@@ -1,1 +1,5 @@
-1)  Why we need ad-hoc ansible commands, give scenario where you have used ansible ad-hoc command?
+1)  Why we need ad-hoc ansible commands, give scenario where you have used ansible ad-hoc commands?
+It is individual running commands, which can be run individually to perform quick functions.
+It’s not use for configuration management and deployment because the commands are of one time usage.
+Ad-hoc commands uses the /user/bin/ansible command line tool to automate the signal task.
+Ansible -m "yum" -a "name=tree state=preset" -vvv (verbose to see detailed logs) 
