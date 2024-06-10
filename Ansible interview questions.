@@ -3,3 +3,18 @@ It is individual running commands, which can be run individually to perform quic
 It’s not use for configuration management and deployment because the commands are of one time usage.
 Ad-hoc commands uses the /user/bin/ansible command line tool to automate the signal task.
 Ansible -m "yum" -a "name=tree state=preset" -vvv (verbose to see detailed logs) 
+
+2) usacase of Ansible module ?
+  Ansible -i inventory -m ping
+  Ansible -i inventory -m setup
+
+3) How to run a playbook on perticular group in inventory. 
+   ansible-playbook -i 'my-inventory.ini' -i 'host3,' playbook.yaml
+
+4) How to run a playbook on perticular ip
+  ansible-playbook -i 10.254.3.133, site.yml
+
+5) What is vault in ansible.
+
+ 6) When i need detailed log on execution ansible playbook what option i need to use?
+   -vvv ( 3 v's for verbose )
