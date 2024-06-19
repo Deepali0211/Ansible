@@ -1,25 +1,30 @@
 1)  Why we need ad-hoc ansible commands, give scenario where you have used ansible ad-hoc commands?
 It is individual running commands, which can be run individually to perform quick functions.
-It’s not use for configuration management and deployment because the commands are of one time usage.
+It’s not use for configuration management and deployment because the commands are of one-time usage.
 Ad-hoc commands uses the /user/bin/ansible command line tool to automate the signal task.
 Ansible -m "yum" -a "name=tree state=preset" -vvv (verbose to see detailed logs) 
 
-2) usacase of Ansible module ?
+2) Uscase of Ansible module ?
   Ansible -i inventory -m ping
   Ansible -i inventory -m setup
 
-3) How to run a playbook on perticular group in inventory. 
+3) How to run a playbook on particular group in inventory. 
    ansible-playbook -i 'my-inventory.ini' -i 'host3,' playbook.yaml
 
 4) How to run a playbook on perticular ip
   ansible-playbook -i 10.254.3.133, site.yml
 
 5) What is vault in ansible.
+ Ansible allows keeping sensitive data such as passwords or keys in encrypted files, rather than a plain text in your playbooks. 
+Create a new encrypted Playbook 
+[ansible]$ ansible-vault create Zeevault.yml 
+Edit the encrypted playbook 
+[ansible]$ ansible-vault edit Shanvault.yml 
+To change the password of Playbook 
+[ansible]$ ansible-vault rekey Shanvault.yml
+ 6) When i need detailed log on execution ansible playbook what option i need to use?-vvv ( 3 v's for verbose )
 
- 6) When i need detailed log on execution ansible playbook what option i need to use?
-   -vvv ( 3 v's for verbose )
-
-7) Write the playbook with handlers for enginx.
+7) Write a playbook to install enginx using handlers.
 - - - #My handlers Playbook
 - hosts: zeko
 user: ansible
@@ -34,7 +39,7 @@ handlers:
 action: service name=httpd state=restarted
 
 8) Roles directory structure.
- Command to create role :==== ansible-galaxy init <ROLE_NAME>
+ Command to create role -- ansible-galaxy init <ROLE_NAME>
 Directory Structure:
 Defaults:
 Files:
@@ -44,3 +49,50 @@ Tasks:
 Templates:
 Tests:
 Vars:
+
+9) Define roles in ansible.
+We can use 2 technologies for reusing a set of task: includes and roles. 
+Roles are good for organizing task and encapsulating data needed to accomplish those tasks. 
+We can organize playbook into a directory structure called Roles. 
+Adding more and more functionality to the playbooks will make it different to maintain in a single file.
+10) Can we group the VMs in ansible inventories.
+Yes
+[demo]
+Ip addresses1
+Ip addresses2
+
+[test]
+Ip addresses3
+Ip addresses4
+
+10) Default port for ssh
+22
+11) What is ansible.cfg file?
+ It contains important Ansible settings that control how Ansible operates
+12) use line in file module while creating the playbook
+- name: add lines
+  lineinfile: 
+    dest: fruits.txt
+    line: '{{ item }}'
+  with_items:
+    - 'Orange'
+    - 'Apple'
+    - 'Banana'
+
+
+13) copy module in ansible.
+- name: Copy file with owner and permissions
+  copy:
+    src: /srv/myfiles/foo.conf
+    dest: /etc/foo.conf
+
+14)  Ansible playbook to ping a server.
+tasks:
+
+    - name: ping
+      shell: ping -c 1 -w 2 8.8.8.8
+      ignore_errors: true
+
+15)
+
+
