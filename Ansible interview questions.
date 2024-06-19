@@ -18,3 +18,29 @@ Ansible -m "yum" -a "name=tree state=preset" -vvv (verbose to see detailed logs)
 
  6) When i need detailed log on execution ansible playbook what option i need to use?
    -vvv ( 3 v's for verbose )
+
+7) Write the playbook with handlers for enginx.
+- - - #My handlers Playbook
+- hosts: zeko
+user: ansible
+become: yes
+connection: ssh
+tasks:
+- name: install HTTPD server on centos 7
+action: yum name=httpd state=installed
+notify: restart httpd
+handlers:
+- name: restart httpd
+action: service name=httpd state=restarted
+
+8) Roles directory structure.
+ Command to create role :==== ansible-galaxy init <ROLE_NAME>
+Directory Structure:
+Defaults:
+Files:
+Handlers:
+Meta:
+Tasks:
+Templates:
+Tests:
+Vars:
